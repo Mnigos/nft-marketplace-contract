@@ -1,0 +1,4 @@
+{
+  "*.{js,ts,md,jsx,tsx,mdx}": "eslint --cache --fix",
+  "*.sol": "solhint \"contracts/**/*.sol\" --fix && prettier --write \"contracts/**/*.sol\""
+}

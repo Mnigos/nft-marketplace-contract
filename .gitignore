@@ -1,0 +1,21 @@
+node_modules
+.env
+build
+types
+migrations
+.coverage_artifacts
+.coverage_contracts
+coverage
+coverage.json
+.eslintcache
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
