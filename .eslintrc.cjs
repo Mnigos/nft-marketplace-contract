@@ -46,6 +46,12 @@ module.exports = {
         'unicorn/prefer-top-level-await': 'off',
       },
     },
+    {
+      files: ['**/test/**/*.ts'],
+      rules: {
+        'unicorn/filename-case': 'off',
+      },
+    },
   ],
   rules: {
     eqeqeq: 'error',
