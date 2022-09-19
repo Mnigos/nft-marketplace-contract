@@ -48,18 +48,11 @@ contract Marketplace is ReentrancyGuard {
     uint256 _price
   ) external nonReentrant {
     require(_price > 0, "Price must be greater than 0");
-    require(
-      _nft.ownerOf(_tokenId) == msg.sender,
-      "You are not the owner of this NFT"
-    );
-    require(
-      _nft.getApproved(_tokenId) == address(this),
-      "You must approve this contract to sell this NFT"
-    );
+
+    itemCount++;
 
     _nft.transferFrom(msg.sender, address(this), _tokenId);
 
-    itemCount++;
     items[itemCount] = Item(
       itemCount,
       _tokenId,
@@ -77,8 +70,11 @@ contract Marketplace is ReentrancyGuard {
     Item storage item = items[_id];
 
     require(item.id > 0 && item.id <= itemCount, "Item does not exist");
-    require(item.sold == false, "Item is already sold");
-    require(item.price == msg.value, "Price is not correct");
+    require(!item.sold, "Item is already sold");
+    require(
+      msg.value >= totalPrice,
+      "not enough ether to cover item price and market fee"
+    );
 
     payable(item.seller).transfer(item.price);
     chairPerson.transfer(totalPrice - item.price);
