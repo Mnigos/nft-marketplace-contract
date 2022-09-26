@@ -49,6 +49,7 @@
     "format": "prettier --write \"contracts/**/*.sol\"",
     "compile": "hardhat compile",
     "deploy:goerli": "hardhat run scripts/deploy.ts",
+    "verify:goerli": "hardhat verify --network goerli",
     "generate-types": "hardhat typechain",
     "typecheck": "hardhat compile && yarn generate-types && tsc --noEmit",
     "postinstall": "yarn generate-types",
